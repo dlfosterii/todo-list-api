@@ -27,7 +27,8 @@ let todoList = [
 ];
 
 // GET /api/todos
-app.get('api/todos', (req, res)=>{
+app.get('/api/todos/', (req, res)=>{
+  console.log(todoList)
   res.json(todoList)
 });
 
@@ -40,9 +41,27 @@ app.get('/api/todos/:id', (req, res)=>{
 });
 
 // POST /api/todos
-
+app.post('/api/todos/', (req, res)=>{
+  let newTodo = req.body;
+  let newId = todoList.reduce((prev, current)=>{
+    if (current.id > prev.id){
+      return current
+    }
+    else {
+          return prev
+        }
+  }).id + 1;
+  newTodo.id = newId;
+  todoList.push(newTodo);
+  console.log(todoList)
+  // console.log(req.body);
+  // res.body(todo)
+});
 
 // PUT /api/todos/:id
+app.put('/api/todos/:id', (req, res)=>{
+
+});
 
 
 // DELETE /api/todos/:id
