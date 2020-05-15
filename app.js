@@ -45,7 +45,7 @@ app.post('/api/todos/', (req, res)=>{
   let newTodo = req.body;
   let newId = todoList.reduce((prev, current)=>{
     if (current.id > prev.id){
-      return current
+      return current;
     }
     else {
           return prev
@@ -53,18 +53,35 @@ app.post('/api/todos/', (req, res)=>{
   }).id + 1;
   newTodo.id = newId;
   todoList.push(newTodo);
-  console.log(todoList)
-  // console.log(req.body);
-  // res.body(todo)
+  console.log(todoList);
+  res.json(newTodo);
 });
 
 // PUT /api/todos/:id
 app.put('/api/todos/:id', (req, res)=>{
+  let todo = todoList.find((item)=>{
+    return (item.id == req.params.id);
+  });
+  todo.todo = req.body.description;
+  res.json(todo);
+});
 
+// DELETE /api/todos/:id
+app.delete('/api/todos/:id', (req, res)=>{
+  todoList = todoList.filter((todo)=>{
+    return todo.id !== Number(req.params.id);
+  });
+  res.json(todoList);
 });
 
 
-// DELETE /api/todos/:id
+
+
+
+
+
+
+
 
 
 app.listen(3000, function () {
