@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('partials/head.ejs') %>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <h1 class="todo-title"><%- title %></h1>
+            <ul class="todo-list js-todos"><% descriptions.forEach(todo => { %>
+
+                <li class="todo-item js-todo-item" data-id="<%= todo.id %>">
+                    <div class="todo-form">
+                        <input type="text" class="todo-form-input" id="js-todo-item-<%= todo.id %>"
+                            value="<%= todo.description %>" />
+                        <button class="todo-button save js-save-button" data-id="<%= todo.id %>"
+                            type="submit">Save</button>
+                    </div>
+                    <button class="todo-button delete js-delete-button" data-id="<%= todo.id %>"
+                        type="button">X</button>
+                </li>
+
+                <%}) %>
+            </ul>
+            <form class="new-todo-form js-add-form" action="/api/todos" meathod="POST">
+                <label for="Todo"></label>
+                <input type="text" class="new-todo-text js-input">
+                <button class="todo-button add">Add</button>
+
+        </div>
+
+        </form>
+
+        <%- include('partials/pageend.ejs') %>
+
+</body>
+
+</html>

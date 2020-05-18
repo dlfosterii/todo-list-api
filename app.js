@@ -1,7 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-
 const app = express();
+
+
+// adding express view engines
+app.set('view engine', 'ejs');
+app.set('views', 'views');
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -25,6 +30,23 @@ let todoList = [
     description: 'Profit!',
   },
 ];
+
+// GET for /about
+app.get('/about', (req, res)=>{
+  res.render('about',{
+    title: 'About',
+    descriptions: todoList,
+  })
+});
+
+
+app.get('/', (req, res)=>{
+  res.render('index',{
+    title: 'Todo App',
+    descriptions: todoList,
+  })
+});
+
 
 // GET /api/todos
 app.get('/api/todos/', (req, res)=>{
