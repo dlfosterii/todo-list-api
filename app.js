@@ -70,8 +70,8 @@ app.post('/api/todos/', (req, res)=>{
       return current;
     }
     else {
-          return prev
-        }
+      return prev
+    }
   }).id + 1;
   newTodo.id = newId;
   todoList.push(newTodo);
@@ -85,6 +85,7 @@ app.put('/api/todos/:id', (req, res)=>{
     return (item.id == req.params.id);
   });
   todo.description = req.body.description;
+  console.log(todoList)
   res.json(todo);
 });
 

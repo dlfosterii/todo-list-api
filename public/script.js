@@ -115,7 +115,8 @@ function deleteTodo(id) {
  */
 function updateTodo(id) {
   // find the todo field on tha page using the id from the parameter
-  const todoField = document.querySelector(`.js-todo-item-${id}`);
+  const todoField = document.querySelector(`#js-todo-item-${id}`);
+ 
   // send a "PUT" request to '/api/todos/id' where 'id' is the id to delete.
   // Set the 'body' of the request to an object that contains the todo text that should be updated
   axios
@@ -125,7 +126,7 @@ function updateTodo(id) {
     // once the response comes back, run this arrow function, passing the response back through as 'response'
     .then((response) => {
       // update the field value to the response data that came back from the server
-      todoField.value = response.data.todo;
+      todoField.value = response.data.description;
     })
     // 'catch' any errors that happen with the request and run this function
     .catch((error) => {
@@ -168,6 +169,7 @@ document.addEventListener('click', (e) => {
   if (e.target.classList.contains('js-save-button')) {
     // find the id of the todo that is to be deleted using the 'data-id' attribute of the button
     const id = e.target.dataset.id;
+
     // pass the id to the `updateTodo()` function
     updateTodo(id);
   }
