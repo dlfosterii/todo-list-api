@@ -10,7 +10,7 @@ function getTodoHtml(todoData) {
   const html = `
       <li class="todo-item js-todo-item" data-id="${todoData.id}">
         <div class="todo-form">
-          <input type="text" class="todo-form-input" id="js-todo-item-${todoData.id}" value="${todoData.todo}" />
+          <input type="text" class="todo-form-input" id="js-todo-item-${todoData.id}" value="${todoData.description}" />
           <button class="todo-button save js-save-button" data-id="${todoData.id}" type="submit">Save</button>
         </div>
         <button class="todo-button delete js-delete-button" data-id="${todoData.id}" type="button">X</button>
@@ -58,7 +58,7 @@ function addTodo(text) {
   // send a "POST" request to '/api/todos'. Set the 'body' of the request to an object that contains the todo text
   axios
     .post('/api/todos', {
-      todo: text,
+      description: text,
     })
     // once the response comes back, run this arrow function, passing the response back through as 'response'
     .then((response) => {
@@ -120,7 +120,7 @@ function updateTodo(id) {
   // Set the 'body' of the request to an object that contains the todo text that should be updated
   axios
     .put(`/api/todos/${id}`, {
-      todo: todoField.value,
+      description: todoField.value,
     })
     // once the response comes back, run this arrow function, passing the response back through as 'response'
     .then((response) => {

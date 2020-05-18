@@ -10,19 +10,19 @@ app.use(express.static('./public'));
 let todoList = [
   {
     id: 1,
-    todo: 'Implement a REST API',
+    description: 'Implement a REST API',
   },
   {
     id: 2,
-    todo: 'Build a frontend',
+    description: 'Build a frontend',
   },
   {
     id: 3,
-    todo: '???',
+    description: '???',
   },
   {
     id: 4,
-    todo: 'Profit!',
+    description: 'Profit!',
   },
 ];
 
@@ -62,7 +62,7 @@ app.put('/api/todos/:id', (req, res)=>{
   let todo = todoList.find((item)=>{
     return (item.id == req.params.id);
   });
-  todo.todo = req.body.description;
+  todo.description = req.body.description;
   res.json(todo);
 });
 
